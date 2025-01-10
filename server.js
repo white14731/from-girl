@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 3000; // <-- ИСПОЛЬЗУЕМ process.env.PORT
+const port = process.env.PORT || 3000;
 
 // Настройки почтового сервера (замените на свои)
 const transporter = nodemailer.createTransport({
@@ -22,7 +22,7 @@ let selectedFoods = [];
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: '*' // Разрешить запросы со всех доменов
+    origin: '*'
 }));
 
 app.post('/notify', (req, res) => {
@@ -62,7 +62,3 @@ setInterval(() => {
 }, 10000);
 
 app.use(express.static('public'));
-
-app.listen(port, () => {
-    console.log(`Сервер запущен на http://localhost:${port}`);
-});
