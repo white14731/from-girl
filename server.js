@@ -26,15 +26,13 @@ app.use(cors({
 }));
 
 app.post('/notify', (req, res) => {
-    const message = req.body.message;
+    const message = req.body.message; // <--- правильно ли вы получаете `message` из req.body
 
     if (!message) {
         return res.status(400).send({ error: 'Сообщение не предоставлено' });
     }
-
     selectedFoods.push(message);
     console.log('Сообщения:', selectedFoods)
-
     res.send({ message: 'Выбор сохранен' });
 });
 
