@@ -63,7 +63,7 @@ function notifyAdmin(foodId) {
         return;
     }
 
-    fetch('https://from-girl.onrender.com', { //  ИЗМЕНЕНИЕ:  указываем полный URL
+    fetch('https://from-girl.onrender.com/notify', { //  ИЗМЕНЕНИЕ:  указываем полный URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
