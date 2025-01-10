@@ -62,7 +62,7 @@ function notifyAdmin(foodId) {
         return;
     }
 
-    fetch('https://from-girl.onrender.com', {
+    fetch('https://from-girl.onrender.com/notify', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
