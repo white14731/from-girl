@@ -22,7 +22,7 @@ let selectedFoods = [];
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'https://white14731.github.io/from-girl/' // <--- фронтенд
+    origin: ['https://white14731.github.io', 'https://white14731.github.io/from-girl/']
 }));
 
 app.post('/notify', (req, res) => {
