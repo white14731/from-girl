@@ -63,10 +63,10 @@ function notifyAdmin(foodId) {
         return;
     }
 
-    fetch('https://from-girl.onrender.com/notify', { //  ИЗМЕНЕНИЕ:  указываем полный URL
+    fetch('https://from-girl.onrender.com/notify', { // <--- бэкенд
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'package/json'
         },
         body: JSON.stringify({ message: `Выбрана еда: ${selectedFood.name}`})
     })
