@@ -10,19 +10,19 @@ const port = 3000;
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'process.env.EMAIL_USER',
-        pass: 'process.env.EMAIL_PASSWORD'
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
     }
 });
 
 // Замените на ваш email
-const YOUR_EMAIL = 'process.env.EMAIL_USER';
+const YOUR_EMAIL = process.env.EMAIL_USER;
 
 let selectedFoods = [];
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'http://localhost:63342'
+    origin: 'https://white14731.github.io/from-girl/' // <--- Заменено на URL GitHub Pages
 }));
 
 app.post('/notify', (req, res) => {
@@ -45,7 +45,7 @@ setInterval(() => {
         selectedFoods = []
 
         const mailOptions = {
-            from: 'process.env.EMAIL_USER',
+            from: process.env.EMAIL_USER,
             to: YOUR_EMAIL,
             subject: 'Уведомление о выборе еды',
             text: messagesToSend.join("\n")
