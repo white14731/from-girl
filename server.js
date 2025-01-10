@@ -26,6 +26,7 @@ app.use(cors({
 }));
 
 app.post('/notify', (req, res) => {
+    console.log('req.body:', req.body); // Добавляем лог для отладки
     const message = req.body.message;
 
     if (!message) {
@@ -33,16 +34,16 @@ app.post('/notify', (req, res) => {
     }
 
     selectedFoods.push(message);
-    console.log('Сообщения:', selectedFoods)
+    console.log('Сообщения:', selectedFoods);
 
-    res.send({ message: 'Выбор сохранен' });
+    res.status(200).send({ message: 'Выбор сохранен' }); // Изменено на res.status(200)
 });
 
 setInterval(() => {
-    console.log('Проверка уведомлений') // Добавляем лог
+    console.log('Проверка уведомлений'); // Добавляем лог
     if (selectedFoods.length > 0) {
         const messagesToSend = selectedFoods;
-        selectedFoods = []
+        selectedFoods = [];
 
         const mailOptions = {
             from: process.env.EMAIL_USER,
@@ -62,3 +63,7 @@ setInterval(() => {
 }, 10000);
 
 app.use(express.static('public'));
+
+app.listen(port, () => {
+    console.log(`Сервер запущен на порту ${port}`);
+});
