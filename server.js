@@ -22,11 +22,13 @@ let selectedFoods = [];
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: '*'
+    origin: 'https://white14731.github.io' // Разрешаем доступ с вашего фронтенда
+    //origin: '*' // небезопасно в production, в дальнейшем добавьте свой origin
 }));
 
+
 app.post('/notify', (req, res) => {
-    console.log('req.body:', req.body); // Добавляем лог для отладки
+    console.log('req.body:', req.body);
     const message = req.body.message;
 
     if (!message) {
@@ -36,11 +38,11 @@ app.post('/notify', (req, res) => {
     selectedFoods.push(message);
     console.log('Сообщения:', selectedFoods);
 
-    res.status(200).send({ message: 'Выбор сохранен' }); // Изменено на res.status(200)
+    res.status(200).send({ message: 'Выбор сохранен' });
 });
 
 setInterval(() => {
-    console.log('Проверка уведомлений'); // Добавляем лог
+    console.log('Проверка уведомлений');
     if (selectedFoods.length > 0) {
         const messagesToSend = selectedFoods;
         selectedFoods = [];
@@ -62,8 +64,8 @@ setInterval(() => {
     }
 }, 10000);
 
-app.use(express.static('public'));
 
+app.use(express.static('public'));
 app.listen(port, () => {
     console.log(`Сервер запущен на порту ${port}`);
 });
