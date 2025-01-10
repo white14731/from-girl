@@ -63,12 +63,13 @@ function notifyAdmin(foodId) {
         return;
     }
 
-    fetch('https://from-girl.onrender.com/notify', { // <--- бэкенд
+    fetch('https://from-girl.onrender.com/notify', {
         method: 'POST',
         headers: {
-            'Content-Type': 'package/json'
+            'Content-Type': 'application/json' // <--- Убедитесь, что этот заголовок есть!
         },
-        body: JSON.stringify({ message: `Выбрана еда: ${selectedFood.name}`})
+        body: JSON.stringify({ message: `Выбрана еда: ${selectedFood.name}`}) // <--- Убедитесь, что объект есть и имя поля "message" правильно написано.
+        //  body: JSON.stringify({ "message": `Выбрана еда: ${selectedFood.name}`}) // можно вот так еще указать
     })
         .then(response => {
             if (!response.ok){
@@ -78,6 +79,6 @@ function notifyAdmin(foodId) {
         })
         .catch(error => {
             console.error("Ошибка при отправке уведомления:", error)
-        })
+        });
 }
 renderFood(foodData);
