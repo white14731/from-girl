@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // <-- ИСПОЛЬЗУЕМ process.env.PORT
 
 // Настройки почтового сервера (замените на свои)
 const transporter = nodemailer.createTransport({
@@ -22,17 +22,19 @@ let selectedFoods = [];
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: ['https://white14731.github.io', 'https://white14731.github.io/from-girl/']
+    origin: '*' // Разрешить запросы со всех доменов
 }));
 
 app.post('/notify', (req, res) => {
-    const message = req.body.message; // <--- правильно ли вы получаете `message` из req.body
+    const message = req.body.message;
 
     if (!message) {
         return res.status(400).send({ error: 'Сообщение не предоставлено' });
     }
+
     selectedFoods.push(message);
     console.log('Сообщения:', selectedFoods)
+
     res.send({ message: 'Выбор сохранен' });
 });
 
