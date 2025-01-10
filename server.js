@@ -22,7 +22,7 @@ let selectedFoods = [];
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'https://from-girl.onrender.com'
+    origin: 'http://localhost:63342'
 }));
 
 app.post('/notify', (req, res) => {
@@ -64,5 +64,5 @@ setInterval(() => {
 app.use(express.static('public'));
 
 app.listen(port, () => {
-    console.log(`Сервер запущен на https://from-girl.onrender.com`);
+    console.log(`Сервер запущен на http://localhost:${port}`);
 });
